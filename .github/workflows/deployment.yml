@@ -34,10 +34,8 @@ jobs:
         id: tests
         run: |
           pip install coverage
-          coverage run --source script/ --omit tests/  -m unittest discover -s tests
-          chmod +x .coverage
-          coverage json
-          chmod +x coverage.json
+          coverage run --source script/ --omit tests/  -m unittest discover -s tests && chmod +x .coverage
+          coverage json && chmod +x coverage.json
           OUTPUT=$(jq '.totals.percent_covered' coverage.json)
           echo "::set-output name=OUTPUT::$OUTPUT"
       - name: Coverage Gate Passed
