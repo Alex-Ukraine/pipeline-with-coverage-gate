@@ -34,7 +34,7 @@ jobs:
         id: tests
         run: |
           pip install coverage
-          coverage run --source . -m unittest discover -s tests
+          coverage run --source script/ --omit tests/  -m unittest discover -s tests
           chmod +x .coverage
           coverage json
           chmod +x coverage.json

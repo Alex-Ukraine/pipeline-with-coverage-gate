@@ -1,5 +1,6 @@
 from unittest import TestCase
-from main import get_sum
+
+from script.main import get_sum
 
 
 class GetSumTestCase(TestCase):
