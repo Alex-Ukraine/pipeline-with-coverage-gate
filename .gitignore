@@ -46,4 +46,5 @@ __pycache__/
 local_exec.py
 .vscode/
 .mypy_cache
+.coverage
 htmlcov
