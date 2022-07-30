@@ -34,7 +34,6 @@ jobs:
         id: tests
         run: |
           pip install coverage
-      #   sudo apt install jq
           coverage run --source . -m unittest discover -s tests
           OUTPUT=$(coverage json | jq '.totals.percent_covered' ./coverage.json)
           echo "::set-output name=OUTPUT::$OUTPUT"
