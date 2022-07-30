@@ -36,7 +36,7 @@ jobs:
           pip install coverage
           coverage run --source . -m unittest discover -s tests
           chmod +x .coverage
-          OUTPUT=$(coverage json | jq '.totals.percent_covered' coverage.json)
+          OUTPUT=$(coverage json | jq '.totals.percent_covered')
           echo "::set-output name=OUTPUT::$OUTPUT"
       - name: Coverage Gate Passed
         if: steps.tests.outputs.OUTPUT >= 80
