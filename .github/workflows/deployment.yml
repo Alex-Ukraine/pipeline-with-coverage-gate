@@ -30,19 +30,19 @@ jobs:
         run: echo Hello, world!
 
       # Runs a set of commands using the runners shell
-      - name: Launch Tests
+      - name: Launch Coverage Tests
         id: tests
         run: |
           pip install coverage
-          coverage run --source script/ --omit tests/  -m unittest discover -s tests && chmod +x .coverage
+          coverage run --source script/ -m unittest discover -s tests && chmod +x .coverage
           coverage json && chmod +x coverage.json
           OUTPUT=$(jq '.totals.percent_covered' coverage.json)
           echo "::set-output name=OUTPUT::$OUTPUT"
       - name: Coverage Gate has Passed
         if: steps.tests.outputs.OUTPUT >= 80
         run: |
-          echo "Coverage Gate has passed"
+          echo "Coverage Gate has passed with $steps.tests.outputs.OUTPUT percent"
       - name: Coverage Gate has not Passed
         if: steps.tests.outputs.OUTPUT < 80
         run: |
-          echo "Coverage Gate has not passed"
+          echo "Coverage Gate has not passed with $steps.tests.outputs.OUTPUT percent"
