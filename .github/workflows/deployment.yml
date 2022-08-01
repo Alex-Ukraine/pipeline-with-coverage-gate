@@ -38,12 +38,12 @@ jobs:
           coverage json && chmod +x coverage.json
           OUTPUT=$(jq '.totals.percent_covered' coverage.json)
           echo "::set-output name=OUTPUT::$OUTPUT"
+          echo "Total Test Coverage is $OUTPUT %"
       - name: Coverage Gate has Passed
         if: steps.tests.outputs.OUTPUT >= 80
         run: |
-          echo steps.tests.outputs.OUTPUT
-          echo "Coverage Gate has passed with $OUTPUT percent"
+          echo "Coverage Gate has passed"
       - name: Coverage Gate has not Passed
         if: steps.tests.outputs.OUTPUT < 80
         run: |
-          echo "Coverage Gate has not passed with $OUTPUT percent"
+          echo "Coverage Gate has not passed"
