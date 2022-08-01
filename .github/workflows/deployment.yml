@@ -41,10 +41,8 @@ jobs:
       - name: Coverage Gate has Passed
         if: steps.tests.outputs.OUTPUT >= 80
         run: |
-          output=$(steps.tests.outputs.OUTPUT)
-          echo "Coverage Gate has passed with $output percent"
+          echo "Coverage Gate has passed with $OUTPUT percent"
       - name: Coverage Gate has not Passed
         if: steps.tests.outputs.OUTPUT < 80
         run: |
-          output=$(steps.tests.outputs.OUTPUT)
-          echo "Coverage Gate has not passed with $output percent"
+          echo "Coverage Gate has not passed with $OUTPUT percent"
